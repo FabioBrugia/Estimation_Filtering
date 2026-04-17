@@ -2,7 +2,7 @@ clc
 clear all
 close all
 
-load resistor_data_1.mat
+load resistor_data_2.mat
 N = length(i);
 %%
 figure,
@@ -60,4 +60,14 @@ end
 Sigma_RR, R_B, Sigma_R_B, Sigma_R_minus_R_B
 
 %%
-    
+figure, plot(i,V,'ok', i,V_SM,'-b', i,V_LS,'-r', i,V_GM,'--k', ...
+i,V_B(:,1),'-m', i,V_B(:,2),'--m', ...
+i,V_B(:,3),'-c', i,V_B(:,4),'--c'),
+axis([min(i),max(i),0,45]), grid, title('Measured data and approximations'),
+xlabel('Current{\it i} in A'), ylabel('Voltage{\it V} in V'),
+legend('Measured data','Sample Mean estimate','Least Squares estimate',...
+'Gauss-Markov estimate', ...
+['Bayesian estimate (\sigma_R^2=', num2str(Sigma_RR(1)),')'], ...
+['Bayesian estimate (\sigma_R^2=', num2str(Sigma_RR(2)),')'], ...
+['Bayesian estimate (\sigma_R^2=', num2str(Sigma_RR(3)),')'], ...
+['Bayesian estimate (\sigma_R^2=', num2str(Sigma_RR(4)),')'])
